@@ -1,0 +1,10 @@
+mode,type,class
+driveAlone,vehicle,vehicle
+drivePass,vehicle,vehicle
+pass,other,other
+busWalk,transit,bus
+parkAndRideBus,pandr,pandrBus
+bike,other,other
+walk,other,other
+walkBike,other,other
+schoolBus,other,other

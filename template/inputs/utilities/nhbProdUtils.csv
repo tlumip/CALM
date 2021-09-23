@@ -1,0 +1,4 @@
+purpose,utilities
+nhbw,log( 1.7828 * gvtEmp + 1 * retEmp + 2.3955 * svcEmp + 1.2263 * remainingEmp + 0.1427 * hhs )
+nhbnw,log( 0.3880 * gvtEmp + 1 * retEmp + 0.5086 * svcEmp + 0.05239 * remainingEmp)
+

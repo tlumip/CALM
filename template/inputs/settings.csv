@@ -1,0 +1,94 @@
+NO,setting,value,Units,RCodeUse,group,Notes
+1,initials," ""mam""",string,"balanceDist.R, calcTripsByMode.R, hbschMcByType.R, tripDistribution.R",scen,NA
+2,year,2010,integer,"inputs.R, externalModel_SWIM",scen,NA
+3,project,CALM 2010,string,"jemnrFunctions.R, calcTripsByMode.R, hbschMcByType.R, balanceDist.R, tripDistribution.R",scen,NA
+4,peak_scen_num,3010,integer,"runModel.R, University.R",scen,NA
+5,dailyoffpeak_scen_num,2010,integer,runModel.R,scen,NA
+6,addPopSyn,FALSE,Boolean,input.R,Boolean,NA
+7,externalModelFromSWIM,TRUE,Boolean,"inputs.R, ModelModules.R",Boolean,NA
+8,runCommercialVehicleModel,TRUE,Boolean,"inputs.R, ModelModules.R, writeToBank.R",Boolean,NA
+9,runSledge,FALSE,Boolean,runModel.R,Boolean,NA
+10,runPeakOffPeakTransitAssignment,FALSE,Boolean,"runModel.R, writeToBank.R",Boolean,NA
+11,runUniversityModel,TRUE,Boolean,university.R,Boolean,NA
+12,inputLoc,inputs/externalModel/,string,externalModel_SWIM.R,path,NA
+13,SWIM_SL_Filename_Pattern,_outputs,string,externalModel_SWIM.R,path,NA
+14,storeLoc,inputs/externalModel/,string,"externalModel_SWIM.R, addExternals.R",path,NA
+15,pumaFileName,puma,string,inputsSave.R,path,NA
+16,bankFolder,emme/database,string,runModel.R,path,NA
+17,macrosFolder,emme/macros,string,runModel.R,path,NA
+18,referenceRun,"C:/Users/michael.mccarthy/Documents/ODOT/CALM/CALM_Baseline/CALM-main",string,"runModel.R, modelReport.R",path,NA
+23,maxIter_Commercial,20,integer,cvm.R,numeric,NA
+24,externalDisaggregateMethodNumber,4,integer,externalModel_SWIM.R,numeric,NA
+25,bikeSpeed,10,mph,inputsSave.R,numeric,NA
+26,drivePass_pass_extra_auto_walk_time,1,minutes,inputsSave.R,numeric,NA
+27,externalStationAutoWalkTime,1,minutes,inputsSave.R,numeric,NA
+28,maxBikeDistance,10,miles,inputsSave.R,numeric,NA
+29,maxWalkDistance,5,miles,inputsSave.R,numeric,NA
+30,opWaitTimeACap,30,minutes,inputsSave.R,numeric,NA
+31,opWaitTimeBCap,30,minutes,inputsSave.R,numeric,NA
+32,opWalkTimeCap,30,minutes,inputsSave.R,numeric,NA
+33,percentDriveForParkAndRideCost,0.25,numeric,inputsSave.R,numeric,NA
+34,pkWaitTimeACap,30,minutes,inputsSave.R,numeric,NA
+35,pkWaitTimeBCap,30,minutes,inputsSave.R,numeric,NA
+36,pkWalkTimeCap,30,minutes,inputsSave.R,numeric,NA
+37,walkSpeed,3,mph,inputsSave.R,numeric,NA
+38,walkTimepeakparkAndRideBusCap,30,minutes,inputsSave.R,numeric,NA
+39,absTTChange,0.01,numeric,runModel.R,numeric,NA
+40,maxIter,10,integer,runModel.R,numeric,NA
+41,maxRMSE,1,integer,runModel.R,numeric,NA
+42,pkTimeOldPercent,0.9,numeric,runModel.R,numeric,NA
+43,universityIterations,1,integer,university.R,numeric,NA
+44,universitySampleRate,1,integer,university.R,numeric,NA
+45,UnivJEMNREmpFact,0.5,integer,university.R,numeric,Used to factor employment above or below the  ratio of houses in the NonUniversity population to all houses
+46,vacancyRate,0.46,numeric,visitors.R,numeric,Rate applied to lodging csv in the visitors model
+47,IZFactA,0.8,numeric,inputsSave.R,numeric,Percentage of mean distance to use as Intrazonal Time
+48,IZFactB,0.6,numeric,createTripDist.R,numeric,Percentage of mean distance to use as Intrazonal Time
+49,IZFactW,0.5,numeric,createTripDist.R,numeric,Percentage of mean distance to use as Intrazonal Time
+50,hbcollPeakFactor,0.407,numeric,hbcollAccessUtils.csv,Factor,Input peakFactor used to weight peak versus offpeak variables in utilities and to split trips by period in mode choice model - see Metro Documentation
+51,hboPeakFactor,0.3766,numeric,hboAccessUtils.csv,Factor,Input peakFactor used to weight peak versus offpeak variables in utilities and to split trips by period in mode choice model - see Metro Documentation
+52,hbrPeakFactor,0.3085,numeric,hbrAccessUtils.csv,Factor,Input peakFactor used to weight peak versus offpeak variables in utilities and to split trips by period in mode choice model - see Metro Documentation
+53,hbsPeakFactor,0.2997,numeric,hbsAccessUtils.csv,Factor,Input peakFactor used to weight peak versus offpeak variables in utilities and to split trips by period in mode choice model - see Metro Documentation
+54,hbwPeakFactor,0.6058,numeric,hbwAccessUtils.csv,Factor,Input peakFactor used to weight peak versus offpeak variables in utilities and to split trips by period in mode choice model - see Metro Documentation
+55,nhbnwPeakFactor,0.3314,numeric,nhbnwAccessUtils.csv,Factor,Input peakFactor used to weight peak versus offpeak variables in utilities and to split trips by period in mode choice model - see Metro Documentation
+56,nhbwPeakFactor,0.3819,numeric,nhbwAccessUtils.csv,Factor,Input peakFactor used to weight peak versus offpeak variables in utilities and to split trips by period in mode choice model - see Metro Documentation
+57,hbcollTripCalibrationFactor,1,numeric,hbcollGen.R,Factor,Factors used to boost trips or employment in generation
+58,hbsroTripProdCalibrationFactor,1.3144,numeric,"hbrGen.R, hbsGen.r, hboGen.R",Factor,Factors used to boost trips or employment in generation
+59,hbwTotalEmploymentCalibrationFactor,1.1349,numeric,hbwGen.R,Factor,Factors used to boost trips or employment in generation
+60,nhbnwTripProdCalibrationFactor,1.3236,numeric,nhbGen.R,Factor,Factors used to boost trips or employment in generation
+61,nhbwTotalEmploymentCalibrationFactor,0.3399,numeric,nhbGen.R,Factor,Factors used to boost trips or employment in generation
+62,hbsroVisitorCalibrationFactor,1,numeric,hbsroGen.R,Factor,Factors used to boost trips or employment in generation
+63,nhbnwVisitorCalibrationFactor,1,numeric,nhbGen.R,Factor,Factors used to boost trips or employment in generation
+64,scalingFactors_hbo,1.0348,numeric,inputs.R (added to distUtils.csv),Factor,Scales the impedence terms of the trip distibution utilities - Default is 1
+65,scalingFactors_hbr,1.2561,numeric,inputs.R (added to distUtils.csv),Factor,Scales the impedence terms of the trip distibution utilities - Default is 1
+66,scalingFactors_hbs,1.2173,string,inputs.R (added to distUtils.csv),Factor,Scales the impedence terms of the trip distibution utilities - Default is 1
+67,scalingFactors_hbwhighInc,0.7792,numeric,inputs.R (added to distUtils.csv),Factor,Scales the impedence terms of the trip distibution utilities - Default is 1
+68,scalingFactors_hbwlowInc,0.4812,numeric,inputs.R (added to distUtils.csv),Factor,Scales the impedence terms of the trip distibution utilities - Default is 1
+69,scalingFactors_hbwmidInc,0.6904,numeric,inputs.R (added to distUtils.csv),Factor,Scales the impedence terms of the trip distibution utilities - Default is 1
+70,scalingFactors_nhbnw,3.3247,numeric,inputs.R (added to distUtils.csv),Factor,Scales the impedence terms of the trip distibution utilities - Default is 1
+71,scalingFactors_nhbw,3.3247,numeric,inputs.R (added to distUtils.csv),Factor,Scales the impedence terms of the trip distibution utilities - Default is 1
+72,autoOperCost,0.091,In 1995 Dollars per Mile,inputsSave.R,Factor,Auto Operating Cost per mile
+73,deflat,1,numeric,jemnrFunctions.R,Factor,Defaltes income from 2010 to 1995
+74,shopEmpFactor,3,Estimated employees per 1000 sqft,tripDist.R,Factor,Boosts Retail employment in trip distribution for non work related purposes
+75,CVMFactor,1.0654,A factor for total CVM trips,CVM.r,Factor,NA
+76,transit_modes,"bw,b,w",string,runModel.R,emme,NA
+77,autoTimeoffPeak_matNum,19,integer,"runModel.R, inputsSave.R",emme,NA
+78,autoTimepeak_matNum,20,integer,"runModel.R, inputsSave.R",emme,NA
+79,boardingsoffPeakbusWalk_matNum,14,integer,"runModel.R, inputsSave.R",emme,NA
+80,boardingspeakbusWalk_matNum,14,integer,"runModel.R, inputsSave.R",emme,NA
+81,dailybus_matNum,45,integer,"runModel.R, inputsSave.R",emme,NA
+82,dailyvehicle_matNum,46,integer,"runModel.R, inputsSave.R",emme,NA
+83,ivTimeoffPeakbusWalk_matNum,9,integer,"runModel.R, inputsSave.R",emme,NA
+84,ivTimepeakbusWalk_matNum,9,integer,"runModel.R, inputsSave.R",emme,NA
+85,opadbus_matNum,44,integer,"runModel.R, inputsSave.R",emme,NA
+86,pkadbus_matNum,43,integer,"runModel.R, inputsSave.R",emme,NA
+87,pm1vehicle_matNum,47,integer,"runModel.R, inputsSave.R",emme,NA
+88,waitTimeAoffPeakbusWalk_matNum,11,integer,"runModel.R, inputsSave.R",emme,NA
+89,waitTimeApeakbusWalk_matNum,11,integer,"runModel.R, inputsSave.R",emme,NA
+90,waitTimeBoffPeakbusWalk_matNum,12,integer,"runModel.R, inputsSave.R",emme,NA
+91,waitTimeBpeakbusWalk_matNum,12,integer,"runModel.R, inputsSave.R",emme,NA
+92,walkTimeoffPeakbusWalk_matNum,10,integer,"runModel.R, inputsSave.R",emme,NA
+93,walkTimepeakbusWalk_matNum,10,integer,"runModel.R, inputsSave.R",emme,NA
+94,autoDistance_matNum,21,integer,inputsSave.R,emme,NA
+95,walkDistance_matNum,22,integer,"createTripDist.R, inputsSave.R",emme,NA
+96,bikeDistance_matNum,23,integer,"createTripDist.R, inputsSave.R",emme,NA
+97,tranDistance_matNum,24,integer,inputsSave.R,,

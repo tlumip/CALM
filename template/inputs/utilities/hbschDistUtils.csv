@@ -1,0 +1,2 @@
+purpose,utility
+hbsch, log(1 * schAttr) + -0.6 * ivTimeoffPeakdriveAlone + 0.012 * ivTimeoffPeakdriveAloneSqrd

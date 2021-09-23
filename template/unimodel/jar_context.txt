@@ -1,0 +1,31 @@
+I have uploaded the revised university model jar file to the ODOT FTP site at incoming\TPAU\universityModel\tpau.jar.
+
+The new code requires another parameter in the tpau.properties file:
+
+UniversityParkingLotChoiceModel.UnmetParkingDemand.file = %project.folder%/outputs/UnmetParkingDemand.csv
+
+I enter this line into the parking lot model setting starting at line 196 but it can be anywhere in the file.
+
+The new code behaves as follows: When the parking simulation runs, if any auto tour cannot find any parking spaces for the departure period and parking segment (e.g. there are no available spaces because they have all been taken by previous tours that haven’t left yet) then the tour is assigned a parking space equal to the university destination zone, as if they magically park at their destination, so that the code won’t crash, and the tour is stored in an array by parking segment (0 through 2 for faculty\staff, student, visitor) and time period (1 through 48).  At the end of the parking simulation, the array is written out to the UnmetParkingDemand.file. If there is no unmet demand, the file will contain zeros. This way the analyst can see what the total unmet demand is at the end of the simulation but the model will still run to completion.
+
+While I was digging around in the code I found a few other things that I wanted or needed to change. One is that the parking lot HashMap was not a singleton; this could be a problem in multi-threaded applications. So, I switched the data structure for the collection of lots into a ConcurrentHashMap and wrote a class to make the data structure a singleton (ParkingLotDataManager). I also put the ParkingLot class in its own file, and implemented the Comparable interface so the lots can be sorted by TAZ and space type. You won’t notice any of these changes as a user but hopefully it will help the code be more stable in the future under different use cases.
+
+Also, I noticed that occasionally I would get different random number draws for certain models. I tracked this down to the use of an inherited method in the MarsenneTwister class, nextInt(). The issue is that MarsenneTwister extends the Random class, but doesn’t override all of Random’s base methods, and nextInt() isn’t overridden. So it is calling the base classes nextInt() method, and that base class doesn’t get seeded and isn’t implementing the Mersenne Twister algorithm for pseudo-random number draws. That wouldn’t necessarily be a problem in single-threaded applications, but in multi-threaded apps like the university model, the order in which the tours and stops are processed can change depending upon the number of threads assigned to the problem and the speed of each thread, and that could change the random draw for any given tour\stop.  I suspect this was causing the small variations in results that I observed. So I replaced all calls of MarsenneTwister.nextInt() with (int) (MarsenneTwister.nextDouble()  * 1000000f). that should solve the problem. Again, not something you really need to be aware of as a user but should lead to more stable results from run to run.
+
+Let me know if you have any questions.
+Thanks,
+-Joel
+
+
+
+
+
+……………………………………
+Joel Freedman
+Director
+ 
+RSG
+P.O. Box 12625 | Portland, OR 97212
+503.539.8226
+www.rsginc.com
+

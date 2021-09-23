@@ -1,0 +1,53 @@
+variable,description
+afrEmp, agriculture employment
+bikeTime,bike time
+boardings,boardings
+boardingsoffPeak, boardings offpeak
+boardingspeak, boardings peak
+collAttr, college attractions
+driveAlone,drive alone
+finEmp, financial employment
+gvtEmp, government employment
+hbcollPeakFactor, hbcoll peak hour factor
+hboPeakFactor, hbo peak hour factor
+hbrPeakFactor, hbr peak hour factor
+hbsPeakFactor, hbs peak hour factor
+hbwPeakFactor, hbw peak hour factor
+hhs, households
+ivTime,in-vehicle time
+ivTimeoffPeak,in-vehicle time offpeak
+ivTimeoffPeakdriveAlone,in-vehicle time offPeak for drive alone mode
+ivTimepeak,in-vehicle time peak
+ivTimepeakdriveAlone,in-vehicle time peak for drive alone mode
+lnAutoDist,LogAutoTripDistance
+lnWalkDist,LogWalkTripDistance
+lnBikeDist,LogBikeTripDistance
+lnTranDist,LogTransitTripDistance
+logSum, logSum variable from accessibility
+mfgEmp, manfactoring employment
+minEmp, mining employment
+mixRetA,mix retail employment
+mixRetP,mix retail employment
+mixTotA,mix total employment
+nhbnwPeakFactor, nhbnw peak hour factor
+nhbwPeakFactor, nhbw peak hour factor
+opCost,out of pocket cost
+parkAcres, park acres
+remainingEmp, remaining employment
+retEmp, retail employment
+shadow,shadow cost
+svcEmp, service employment
+totalEmp, total employment
+autoDist,autoTripDist
+walkDist,walkDist
+bikeDist,bikeDist
+tranDist,tranDist
+waitTimeA,wait time 1
+waitTimeAoffPeak, wait time 1 offpeak
+waitTimeApeak, wait time 1 peak
+waitTimeB,wait time 2
+waitTimeBoffPeak, wait time 2 offpeak
+waitTimeBpeak, wait time 2 peak
+walkTime,walk time
+walkTimeoffPeak, walk time offpeak
+walkTimepeak, walk time peak

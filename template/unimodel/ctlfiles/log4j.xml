@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<!--
+ A simple configuration file for the Log4j logging classes. Basic FILE and CONSOLE
+ Appenders are created. Also, debug logger output is sent to a separate DEBUG-FILE.
+ 
+-->
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+
+            <param name="ConversionPattern" value="%d{dd-MMM-yyyy HH:mm:ss:SSS}, %p, %m%n"/>
+
+        </layout>        
+    </appender>
+
+   <appender name="FILE" class="org.apache.log4j.FileAppender">
+        <param name="File" value="rpt/event.log"/>
+        <param name="Append" value="false"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd-MMM-yyyy HH:mm:ss:SSS}, %p, %m%n"/>
+        </layout>        
+    </appender>
+
+  
+    <appender name="DEBUG-FILE" class="org.apache.log4j.FileAppender">
+        <param name="File" value="rpt/debug.log"/>
+        <param name="Append" value="false"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd-MMM-yyyy HH:mm:ss:SSS}, %p, %m%n"/>
+        </layout>        
+    </appender>
+
+
+    <appender name="RESIDENT-FILE" class="org.apache.log4j.FileAppender">
+        <param name="File" value="rpt/residentModel.log"/>
+        <param name="Append" value="false"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd-MMM-yyyy HH:mm:ss:SSS}, %p, %m%n"/>
+        </layout>        
+    </appender>
+
+   <appender name="VISITOR-FILE" class="org.apache.log4j.FileAppender">
+        <param name="File" value="rpt/visitorModel.log"/>
+        <param name="Append" value="false"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd-MMM-yyyy HH:mm:ss:SSS}, %p, %m%n"/>
+        </layout>        
+    </appender>
+
+   <appender name="UNIVERSITY-FILE" class="org.apache.log4j.FileAppender">
+        <param name="File" value="rpt/universityModel.log"/>
+        <param name="Append" value="false"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd-MMM-yyyy HH:mm:ss:SSS}, %p, %m%n"/>
+        </layout>        
+    </appender>
+
+<!-- choice model debug logger statements will be sent to DEBUG-FILE-2 -->
+    <logger name="residentModel" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="RESIDENT-FILE"/>
+    </logger>
+
+<!-- choice model debug logger statements will be sent to DEBUG-FILE-2 -->
+    <logger name="visitorModel" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="VISITOR-FILE"/>
+    </logger>
+
+<!-- choice model debug logger statements will be sent to DEBUG-FILE-3 -->
+    <logger name="universityModel" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="UNIVERSITY-FILE"/>
+    </logger>
+    
+    <!-- choice model debug logger statements will be sent to DEBUG-FILE-3 -->
+    <logger name="UtilityExpressionCalculator" additivity="false">
+        <level value="debug"/>
+        <appender-ref ref="UNIVERSITY-FILE"/>
+    </logger>
+
+    
+<!-- choice model debug logger statements will be sent to DEBUG-FILE-3 -->
+    <logger name="cmDebug" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="UNIVERSITY-FILE"/>
+    </logger>
+    
+    
+    
+
+<!-- The default logger will log info level to both CONSOLE and FILE -->
+    <root>
+        <level value="info"/>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+        
+</log4j:configuration>

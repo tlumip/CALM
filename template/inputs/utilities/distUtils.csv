@@ -1,0 +1,10 @@
+purpose,utility
+hbwlowInc,1.108 * logSum + log( 2.872 * (afrEmp + minEmp) + remainingEmp )
+hbwmidInc,0.94 * logSum + log( retEmp + 1.177 * mfgEmp + 1.154 * remainingEmp )
+hbwhighInc,1.0 * logSum + log( retEmp + 2.2 * finEmp + 1.407 * svcEmp + 1.585 * remainingEmp )
+hbs,1.92 * logSum + log( 0.028 * hhs + retEmp + 0.01 * svcEmp + 0.024 * remainingEmp )
+hbr,1.365 * logSum + log( 1.969 * hhs + 5.15 * parkAcres + retEmp )
+hbo,1.677 * logSum + log( 0.413 * hhs + retEmp + 0.739 * svcEmp + 0.868 * gvtEmp + 0.108 * remainingEmp )
+nhbw,1.273 * logSum + log( 0.261 * hhs + retEmp + 0.262 * svcEmp + 0.431 * gvtEmp + 0.097 * remainingEmp )
+nhbnw,1.4 * logSum + log( 0.234 * hhs + retEmp + 0.173 * svcEmp + 0.248 * gvtEmp + 0.029 * remainingEmp )
+hbcoll,1.5 * logSum + log( collAttr )

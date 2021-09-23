@@ -1,0 +1,11 @@
+,Car,SU Truck,MU Truck
+Agr_Forest,0,0,0
+Mining,0.009,0.009,0.014
+Construction,0.4,0.112,0.06
+Manufacturing,0.009,0.009,0.014
+Transp_Comm_PU,0.043,0.004,0.012
+Wholesale,0.123,0.033,0.049
+Retail,0.089,0.023,0.025
+Financial,0.078,0.008,0
+Service,0.08,0.005,0
+Government,0.01,0,0.012

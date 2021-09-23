@@ -1,0 +1,29 @@
+file,description,V4_Notes,V3_Notes,V2_Notes
+jemnrFunctions.R,General utility functions,Updated to add new functions to multi-thread and use EMME/4,"added functions - calcRmse, write.mf.batchin, write.mf.csv, read.mf.csv",Fixed balance function
+pregen/access.R,Function to calculate urban accessibility measures,Comments added,No Change,"Corrected accessibility measure to use distance instead of walk time, Fixed directory creation warning"
+pregen/whia.R,Function to calculate whia distributions,Comments added,No Change,No Change
+pregen/chwi.R,Function to calculate chwi distributions,Comments added,No Change,No Change
+pregen/khia.R,Function to calculate khia distributions,Comments added,No Change,No Change
+pregen/visitors.R,Visitor model,No Change,No Change,No Change
+tripgen/hbwGen.R,Function to calculate hbw trip generation,Comments added and parameterized with settings file (shopEmpFactor),No Change,Fixed directory creation warning
+tripgen/hbsroGen.R,Function to calculate hbs & hbr & hbo trip generation,Comments added and parameterized with settings file (shopEmpFactor),No Change,No Change
+tripgen/nhbGen.R,Function to calculate nhbw & nhbnw trip generation,Comments added,No Change,No Change
+tripgen/hbcollGen.R,Function to calculate hbcoll trip generation,Comments added,moved hbcollTripProdCalibrationFactor to settings.csv,No Change
+tripgen/hbschGen.R,Function to calculate hbsch trip generation,Comments added,made scaling of hbsch attractions optional and added scaleHbschAttractionsToProductions to settings.csv,No Change
+access/accessUtilities.R,Function to calculate accessiblity utilities,Comments added,No Change,"Added internal (code) calculation of mixRetA which is needed for 2003 utilities, Fixed directory creation warning"
+access/accessLogSum.R,Function to calculate multimodal log sums,Comments added,No Change,No Change
+tripdist/tripDistribution.R,Function to distribute trips,Comments added,moved shopEmpFactor to settings.csv,"Allowed more matrices to be called from utility fomula in distUtil.csv, Fixed directory creation warning"
+tripdist/balanceDist.R,Function to balance hbw and hbcoll trips,Comments added,No Change,No Change
+tripdist/hbschDistByType.R,Function to distribute hbsch trips by type,Comments added and adjusted to work with either external model,changed variable p to iter to be consistent with runModel.R,"Removed hard coded splits and made total school enrollment eqaul to sum of zone school enrollment - SCHEBASE, also added two warning reports to pop-up the difference between the enrollment coded in the land use and what the model is coming up with based on the district ""water sheds"""
+modec/modeChoiceCommon.R,Function to calculate common mode choice utility,Comments added,No Change,"Added internal (code) calculation of mixRetA which is needed for 2003 utilities, Fixed directory creation warning"
+modec/hbschMcByType.R,Function to calculate hbsch mode choice by type,Comments added,No Change,Fixed directory creation warning
+modec/processSegmentUtils.R,Function to process segment utilities files,Comments added,No Change,Fixed directory creation warning
+modec/calcTripsByMode.R,Function to calculate mode choice,Comments added,No Change,No Change
+peaking/peaking.R,Peaking function,Comments added,No Change,No Change
+peaking/collapseTables.R,Function to collapse mode choice results,No Change,No Change,Fixed directory creation warning
+peaking/allocateParkAndRide.R,Function to allocate park and ride trips,Comments added,No Change,No Change
+peaking/pandrPeaking.R,Park and ride peaking function,Comments added,No Change,park and ride trips were never added to bus or auto matrices - updated script to account add these into assignment ODs
+peaking/externalModel_SWIM.R,External model based on SWIM subarea process,New External Model,No Change,No Change
+peaking/addExternals.R,Function to add external model results,Updated to be used with New SWIM external model,read externalPeriodFactors.csv and create time-of-day matrices by external movement type,No Change
+peaking/externalModel_AB20070111.R,Legacy External model function,No longer Used,No Change,"Made eeDist a seed instead of an input, corrected ie calculation to use ie.pct and rowSums (productions) instead of colSums"
+peaking/addExternals_old.R,Legacy Function to add external model results,No longer Used,read externalPeriodFactors.csv and create time-of-day matrices by external movement type,No Change

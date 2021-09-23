@@ -1,0 +1,33 @@
+# Avoid committing outputs and large files
+# /dependencies/**
+/template/*.RData
+/template/*.Rhistory
+/template/*.lnk
+/template/emme/**
+/template/outputs/*.RData
+/template/unimodel/outputs/**
+/template/unimodel/emmemat/**
+/template/unimodel/rpt/**
+/template/errorReport.txt
+/template/visum/*_backup.ver
+/template/visum/procedures/unused/**
+/_Scenarios/*/*.RData
+/_Scenarios/*/*.Rhistory
+/_Scenarios/*/*.lnk
+/_Scenarios/*/emme/**
+/_Scenarios/*/outputs/*.RData
+/_Scenarios/*/unimodel/outputs/**
+/_Scenarios/*/unimodel/emmemat/**
+/_Scenarios/*/unimodel/rpt/**
+/_Scenarios/*/errorReport.txt
+/_Scenarios/*/visum/*_backup.ver
+/_Scenarios/*/visum/procedures/unused/**
+
+# Make sure some RData inputs are preserved
+!template/inputs/externalModel/**
+!_Scenarios/*/inputs/externalModel/**
+
+# Remove TAZ data
+/template/inputs/taz.csv
+/template/inputs/taz_census.csv
+/template/unimodel/tazData.csv
