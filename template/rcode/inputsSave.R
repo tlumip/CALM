@@ -185,7 +185,7 @@
 
       ivTimepeakbusWalk <- readSelectedOMX(putPkSkim, as.character(matNumsPuT["ivt"]))
       dimnames(ivTimepeakbusWalk) <- list(matZones$Lookup,matZones$Lookup)
-      writeZipMat(ivTimepeakbusWalk,paste0("unimodel/emmemat/mf",ivTimepeakbusWalk_matNum,".zmx"))
+      writeZipMat(ivTimepeakbusWalk,paste0("unimodel/emmemat/mf",ivTimepeakbusWalk_matNum,".zmx"),path7zipexe)
       diag(ivTimepeakbusWalk) <- NA
       ivTimepeakbusWalk[ivTimepeakbusWalk > 9999] <- NA
       ivTimepeakbusWalk[ivTimepeakbusWalk == 0] <- NA
@@ -203,7 +203,7 @@
 
       walkTimepeakbusWalk <- readSelectedOMX(putPkSkim, as.character(matNumsPuT["walk"]))
       dimnames(walkTimepeakbusWalk) <- list(matZones$Lookup,matZones$Lookup)
-      writeZipMat(walkTimepeakbusWalk,paste0("unimodel/emmemat/mf",walkTimepeakbusWalk_matNum,".zmx"))
+      writeZipMat(walkTimepeakbusWalk,paste0("unimodel/emmemat/mf",walkTimepeakbusWalk_matNum,".zmx"),path7zipexe)
       diag(walkTimepeakbusWalk) <- NA
       walkTimepeakbusWalk[walkTimepeakbusWalk > pkWalkTimeCap & walkTimepeakbusWalk < 9998] <- pkWalkTimeCap
       walkTimepeakbusWalk[walkTimepeakbusWalk > 9999] <- NA
@@ -228,8 +228,8 @@
       dimnames(firstWait) <- list(matZones$Lookup,matZones$Lookup)
       dimnames(secondWait) <- list(matZones$Lookup,matZones$Lookup)
 
-      writeZipMat(firstWait,paste0("unimodel/emmemat/mf",waitTimeApeakbusWalk_matNum,".zmx"))
-      writeZipMat(secondWait,paste0("unimodel/emmemat/mf",waitTimeBpeakbusWalk_matNum,".zmx"))
+      writeZipMat(firstWait,paste0("unimodel/emmemat/mf",waitTimeApeakbusWalk_matNum,".zmx"),path7zipexe)
+      writeZipMat(secondWait,paste0("unimodel/emmemat/mf",waitTimeBpeakbusWalk_matNum,".zmx"),path7zipexe)
 
       #The totalWait and firstWalk have a large number of values that are extremely high (1e20). All of these are in zones where there is no transit available.
       #secondWait has a very large number of zones with fractional negative values. If all the values for totalWait and firstWait where transit is not available are
@@ -265,7 +265,7 @@
 
       boardingspeakbusWalk <- readSelectedOMX(putPkSkim, as.character(matNumsPuT["transfers"])) # number of transfers
       dimnames(boardingspeakbusWalk) <- list(matZones$Lookup,matZones$Lookup)
-      writeZipMat(boardingspeakbusWalk,paste0("unimodel/emmemat/mf",boardingspeakbusWalk_matNum,".zmx"))
+      writeZipMat(boardingspeakbusWalk,paste0("unimodel/emmemat/mf",boardingspeakbusWalk_matNum,".zmx"),path7zipexe)
       boardingspeakbusWalk[boardingspeakbusWalk > 9999] <- NA
       # Fix for boardings/transfers difference
       #boardingspeakbusWalk[boardingspeakbusWalk > 0 & !is.na(boardingspeakbusWalk)] <- boardingspeakbusWalk[boardingspeakbusWalk > 0 & !is.na(boardingspeakbusWalk)] - 1
@@ -284,7 +284,7 @@
 
       ivTimeoffPeakbusWalk  <- readSelectedOMX(putDySkim, as.character(matNumsPuT["ivt"]))
       dimnames(ivTimeoffPeakbusWalk) <- list(matZones$Lookup,matZones$Lookup)
-      writeZipMat(ivTimeoffPeakbusWalk,paste0("unimodel/emmemat/mf",ivTimeoffPeakbusWalk_matNum,".zmx"))
+      writeZipMat(ivTimeoffPeakbusWalk,paste0("unimodel/emmemat/mf",ivTimeoffPeakbusWalk_matNum,".zmx"),path7zipexe)
       diag(ivTimeoffPeakbusWalk) <- NA
       ivTimeoffPeakbusWalk[ivTimeoffPeakbusWalk > 9999] <- NA
       ivTimeoffPeakbusWalk[ivTimeoffPeakbusWalk == 0] <- NA
@@ -302,7 +302,7 @@
 
       walkTimeoffPeakbusWalk <- readSelectedOMX(putDySkim, as.character(matNumsPuT["walk"]))
       dimnames(walkTimeoffPeakbusWalk) <- list(matZones$Lookup,matZones$Lookup)
-      writeZipMat(walkTimeoffPeakbusWalk,paste0("unimodel/emmemat/mf",walkTimeoffPeakbusWalk_matNum,".zmx"))
+      writeZipMat(walkTimeoffPeakbusWalk,paste0("unimodel/emmemat/mf",walkTimeoffPeakbusWalk_matNum,".zmx"),path7zipexe)
       diag(walkTimeoffPeakbusWalk) <- NA
       walkTimeoffPeakbusWalk[walkTimeoffPeakbusWalk > opWalkTimeCap & walkTimeoffPeakbusWalk < 9998] <- opWalkTimeCap
       walkTimeoffPeakbusWalk[walkTimeoffPeakbusWalk > 9999] <- NA
@@ -326,8 +326,8 @@
       dimnames(firstWait) <- list(matZones$Lookup,matZones$Lookup)
       dimnames(secondWait) <- list(matZones$Lookup,matZones$Lookup)
 
-      writeZipMat(firstWait,paste0("unimodel/emmemat/mf",waitTimeAoffPeakbusWalk_matNum,".zmx"))
-      writeZipMat(secondWait,paste0("unimodel/emmemat/mf",waitTimeBoffPeakbusWalk_matNum,".zmx"))
+      writeZipMat(firstWait,paste0("unimodel/emmemat/mf",waitTimeAoffPeakbusWalk_matNum,".zmx"),path7zipexe)
+      writeZipMat(secondWait,paste0("unimodel/emmemat/mf",waitTimeBoffPeakbusWalk_matNum,".zmx"),path7zipexe)
 
       #The totalWait and firstWalk have a large number of values that are extremely high (1e20). All of these are in zones where there is no transit available.
       #secondWait has a very large number of zones with fractional negative values. If all the values for totalWait and firstWait where transit is not available are
@@ -363,7 +363,7 @@
 
       boardingsoffPeakbusWalk <- readSelectedOMX(putDySkim, as.character(matNumsPuT["transfers"]))
       dimnames(boardingsoffPeakbusWalk ) <- list(matZones$Lookup,matZones$Lookup)
-      writeZipMat(boardingsoffPeakbusWalk,paste0("unimodel/emmemat/mf",boardingsoffPeakbusWalk_matNum,".zmx"))
+      writeZipMat(boardingsoffPeakbusWalk,paste0("unimodel/emmemat/mf",boardingsoffPeakbusWalk_matNum,".zmx"),path7zipexe)
       boardingsoffPeakbusWalk[boardingsoffPeakbusWalk > 9999] <- NA
       # Fix for boardings/transfers difference
       #boardingsoffPeakbusWalk[boardingsoffPeakbusWalk > 0 & !is.na(boardingsoffPeakbusWalk)] <- boardingsoffPeakbusWalk[boardingsoffPeakbusWalk > 0 & !is.na(boardingsoffPeakbusWalk)] - 1
@@ -513,7 +513,7 @@
 
       autoDist <- readSelectedOMX(prtDySkim, as.character(matNumsPrT["dist"]))
       dimnames(autoDist) <- list(matZones$Lookup,matZones$Lookup)
-      writeZipMat(autoDist,paste0("unimodel/emmemat/mf",autoDistance_matNum,".zmx"))
+      writeZipMat(autoDist,paste0("unimodel/emmemat/mf",autoDistance_matNum,".zmx"),path7zipexe)
       #Set diagonal values
       diag(autoDist) <- apply(autoDist, 1, function(x) mean(sort(x[x>0&!is.na(x)])[1:4])) * IZFactA
       autoDist[autoDist>9999] <- NA
@@ -530,7 +530,7 @@
 
       tranDist <- readSelectedOMX(putDySkim, as.character(matNumsPuT["dist"]))
       dimnames(tranDist) <- list(matZones$Lookup,matZones$Lookup)
-      writeZipMat(tranDist,paste0("unimodel/emmemat/mf",tranDistance_matNum,".zmx"))
+      writeZipMat(tranDist,paste0("unimodel/emmemat/mf",tranDistance_matNum,".zmx"),path7zipexe)
       #Set diagonal values and Transit Availabilty
       diag(tranDist) <- NA
       tranDist[!tAvailoffPeak,] <- tranDist[,!tAvailoffPeak] <- NA
@@ -547,15 +547,14 @@
       walkDist <- readSelectedOMX(walkskim, "1")
       dimnames(bikeDist) <- list(matZones$Lookup,matZones$Lookup)
       dimnames(walkDist) <- list(matZones$Lookup,matZones$Lookup)
-
-      writeZipMat(bikeDist,paste0("unimodel/emmemat/mf",bikeDistance_matNum,".zmx"))
-      writeZipMat(walkDist,paste0("unimodel/emmemat/mf",walkDistance_matNum,".zmx"))
-
       #Set diagonal values
       diag(bikeDist) <- apply(bikeDist, 1, function(x) mean(sort(x[x>0&!is.na(x)])[1:4])) * IZFactB
       diag(walkDist) <- apply(walkDist, 1, function(x) mean(sort(x[x>0&!is.na(x)])[1:4])) * IZFactW
 
       #output result
+      writeZipMat(bikeDist,paste0("unimodel/emmemat/mf",bikeDistance_matNum,".zmx"),path7zipexe)
+      writeZipMat(walkDist,paste0("unimodel/emmemat/mf",walkDistance_matNum,".zmx"),path7zipexe)
+
       save(list=c("bikeDist"),file="inputs/RData/bikeDist.RData")
       save(list=c("walkDist"),file="inputs/RData/walkDist.RData")
 
@@ -657,8 +656,8 @@
       dimnames(autoTimeoffPeak) <- list(matZones$Lookup,matZones$Lookup)
       autoTimepeak <- readSelectedOMX(prtPkSkim, as.character(matNumsPrT["tt"]))
       dimnames(autoTimepeak) <- list(matZones$Lookup,matZones$Lookup)
-      writeZipMat(autoTimeoffPeak,paste0("unimodel/emmemat/mf",autoTimeoffPeak_matNum,".zmx"))
-      writeZipMat(autoTimepeak,paste0("unimodel/emmemat/mf",autoTimepeak_matNum,".zmx"))
+      writeZipMat(autoTimeoffPeak,paste0("unimodel/emmemat/mf",autoTimeoffPeak_matNum,".zmx"),path7zipexe)
+      writeZipMat(autoTimepeak,paste0("unimodel/emmemat/mf",autoTimepeak_matNum,".zmx"),path7zipexe)
       diag(autoTimepeak) <- apply(autoTimepeak, 1, function(x) mean(sort(x[x>0])[1:4])) * IZFactA
       diag(autoTimeoffPeak) <- apply(autoTimeoffPeak, 1, function(x) mean(sort(x[x>0])[1:4])) * IZFactA
 

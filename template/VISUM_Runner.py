@@ -27,8 +27,20 @@ warnings.simplefilter('ignore', tables.NaturalNameWarning)
 
 ############################################################
 
+### Read Settings.csv
+settings_csv = csv.reader(open('inputs/Settings.csv'))
+settings = list(settings_csv)
+
+settings_dict = {}
+
+for row in settings:
+    key = row[1]
+    value = row[2]
+    settings_dict[key] = value
+
 ### Global settings
-inputVersionFile = "visum/CALM.ver"
+inputVersionFile = settings_dict['visumInputFile']
+setConnectorTimes = True if settings_dict['setConnectorTimes'] == "TRUE" else False
 
 ### Define Functions
 def startVisum():
@@ -95,36 +107,33 @@ if __name__== "__main__":
   #get command line arguments
   runmode = sys.argv[1].lower()
 
-  if len(sys.argv)>2:
-      proj_dir = sys.argv[2]
-
   print("start " + runmode + " run: " + time.ctime())
 
   if runmode == 'skims':
     try:
-      #read properties file
-      #properties = Properties()
-      #properties.loadPropertyFile("config\orramp.properties")
-      #inputVersionFile = "visum/CALM.ver" #properties['Input.Version.File']
-
       Visum = startVisum()
       loadVersion(Visum, inputVersionFile)
 
       # Set connector times
-      loadProcedure(Visum, "visum/procedures/connector_times.xml")
+      if setConnectorTimes:
+          loadProcedure(Visum, "visum/procedures/connector_times.xml")
 
-      # Auto
+      # Auto Daily
       loadProcedure(Visum, "visum/procedures/prt_daily_skim.xml")
       writeMatrices(Visum, "outputs/matrices/prt_daily_skim.omx")
       removeAllMatrices(Visum)
+
+      # Auto Peak
       loadProcedure(Visum, "visum/procedures/prt_peak_skim.xml")
       writeMatrices(Visum, "outputs/matrices/prt_peak_skim.omx")
       removeAllMatrices(Visum)
 
-      # Transit
+      # Transit Daily
       loadProcedure(Visum, "visum/procedures/put_skim.xml")
       writeMatrices(Visum, "outputs/matrices/put_daily_skim.omx")
       removeAllMatrices(Visum)
+
+      # Transit Peak
       loadProcedure(Visum, "visum/procedures/put_skim.xml")
       writeMatrices(Visum, "outputs/matrices/put_peak_skim.omx")
       removeAllMatrices(Visum)
@@ -139,8 +148,6 @@ if __name__== "__main__":
       writeMatrices(Visum, "outputs/matrices/bike_skim.omx")
       removeAllMatrices(Visum)
 
-
-
       closeVisum(Visum)
       sys.exit(0)
     except Exception as e:
@@ -151,11 +158,6 @@ if __name__== "__main__":
 # combined auto + transit assignment
   if runmode == 'assignment':
     try:
-      #read properties file
-      #properties = Properties()
-      #properties.loadPropertyFile("config\orramp.properties")
-      #inputVersionFile = "visum/CALM.ver" # TODO properties['Input.Version.File']
-      #timePeriods = ['daily','peak']
       matFile = ['daily','peak','peak'] # peak matrix always has PM vehicle, but may not have peak/off-peak bus
       autoTimePeriod = ['daily','pm1','daily'] # assign daily  auto + off-peak transit if exists
       transitTimePeriod = ['daily','pkad','opad']
@@ -166,7 +168,8 @@ if __name__== "__main__":
           loadVersion(Visum, inputVersionFile)
 
           # Set connector times
-          loadProcedure(Visum, "visum/procedures/connector_times.xml")
+          if setConnectorTimes:
+              loadProcedure(Visum, "visum/procedures/connector_times.xml")
 
           # Setup Matrix
           tazIds = VisumPy.helpers.GetMulti(Visum.Net.Zones, "No")
@@ -222,6 +225,8 @@ if __name__== "__main__":
           writeMatrices(Visum, "outputs/matrices/put_"+versionName[i]+"_skim.omx")
 
           saveVersion(Visum, "outputs/networks/Assignment_"+versionName[i]+".ver")
+
+          removeAllMatrices(Visum)
 
           #close files
           trips.close()

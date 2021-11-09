@@ -70,8 +70,8 @@
 
 
               #DETERMINE TRANSIT ASSIGNMENT TYPE
-              if(as.logical(runPeakOffPeakTransitAssignment)) first_transit_assign_mat <- opadbus_matNum
-              if(!as.logical(runPeakOffPeakTransitAssignment)) first_transit_assign_mat <- dailybus_matNum
+              #if(as.logical(runPeakOffPeakTransitAssignment)) first_transit_assign_mat <- opadbus_matNum
+              #if(!as.logical(runPeakOffPeakTransitAssignment)) first_transit_assign_mat <- dailybus_matNum
 
               ################################################################################
 

@@ -14,8 +14,6 @@ NO,setting,value,Units,RCodeUse,group,Notes
 13,SWIM_SL_Filename_Pattern,_outputs,string,externalModel_SWIM.R,path,NA
 14,storeLoc,inputs/externalModel/,string,"externalModel_SWIM.R, addExternals.R",path,NA
 15,pumaFileName,puma,string,inputsSave.R,path,NA
-16,bankFolder,emme/database,string,runModel.R,path,NA
-17,macrosFolder,emme/macros,string,runModel.R,path,NA
 18,referenceRun,"C:/Users/michael.mccarthy/Documents/ODOT/CALM/CALM_Baseline/CALM-main",string,"runModel.R, modelReport.R",path,NA
 23,maxIter_Commercial,20,integer,cvm.R,numeric,NA
 24,externalDisaggregateMethodNumber,4,integer,externalModel_SWIM.R,numeric,NA
@@ -70,18 +68,12 @@ NO,setting,value,Units,RCodeUse,group,Notes
 73,deflat,1,numeric,jemnrFunctions.R,Factor,Defaltes income from 2010 to 1995
 74,shopEmpFactor,3,Estimated employees per 1000 sqft,tripDist.R,Factor,Boosts Retail employment in trip distribution for non work related purposes
 75,CVMFactor,1.0654,A factor for total CVM trips,CVM.r,Factor,NA
-76,transit_modes,"bw,b,w",string,runModel.R,emme,NA
 77,autoTimeoffPeak_matNum,19,integer,"runModel.R, inputsSave.R",emme,NA
 78,autoTimepeak_matNum,20,integer,"runModel.R, inputsSave.R",emme,NA
 79,boardingsoffPeakbusWalk_matNum,14,integer,"runModel.R, inputsSave.R",emme,NA
 80,boardingspeakbusWalk_matNum,14,integer,"runModel.R, inputsSave.R",emme,NA
-81,dailybus_matNum,45,integer,"runModel.R, inputsSave.R",emme,NA
-82,dailyvehicle_matNum,46,integer,"runModel.R, inputsSave.R",emme,NA
 83,ivTimeoffPeakbusWalk_matNum,9,integer,"runModel.R, inputsSave.R",emme,NA
 84,ivTimepeakbusWalk_matNum,9,integer,"runModel.R, inputsSave.R",emme,NA
-85,opadbus_matNum,44,integer,"runModel.R, inputsSave.R",emme,NA
-86,pkadbus_matNum,43,integer,"runModel.R, inputsSave.R",emme,NA
-87,pm1vehicle_matNum,47,integer,"runModel.R, inputsSave.R",emme,NA
 88,waitTimeAoffPeakbusWalk_matNum,11,integer,"runModel.R, inputsSave.R",emme,NA
 89,waitTimeApeakbusWalk_matNum,11,integer,"runModel.R, inputsSave.R",emme,NA
 90,waitTimeBoffPeakbusWalk_matNum,12,integer,"runModel.R, inputsSave.R",emme,NA
@@ -92,3 +84,6 @@ NO,setting,value,Units,RCodeUse,group,Notes
 95,walkDistance_matNum,22,integer,"createTripDist.R, inputsSave.R",emme,NA
 96,bikeDistance_matNum,23,integer,"createTripDist.R, inputsSave.R",emme,NA
 97,tranDistance_matNum,24,integer,inputsSave.R,,
+98,visumInputFile,"visum/CALM.ver",string,VISUM_Runner.py,Visum,relative path to input version file
+99,path7zipexe,"C:/Program Files/7-Zip/7z.exe",string,ZMX.r,university.r,path to 7-zip executable
+100,setConnectorTimes,TRUE,Boolean,VISUM_Runner.py,Visum,Enable/disable connector times procedure

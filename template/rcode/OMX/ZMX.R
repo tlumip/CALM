@@ -13,7 +13,7 @@
 
 #Read ZMX File
 readZipMat = function(fileName) {
-  
+
   #define matrix
   rowCon = unz(fileName,"_rows")
   colCon = unz(fileName,"_columns")
@@ -27,12 +27,12 @@ readZipMat = function(fileName) {
   close(colCon)
   close(xRowNumCon)
   close(xColNumCon)
-  
+
   #create matrix
   outMat = matrix(0, nrows, ncols)
   rownames(outMat) = rowNames
   colnames(outMat) = colNames
-  
+
   #read records
   zipEntries = paste("row_", 1:nrows, sep="")
   for(i in 1:nrows) {
@@ -47,28 +47,28 @@ readZipMat = function(fileName) {
 
 #Write ZMX File
 writeZipMat = function(Matrix, FileName, SevenZipExe="C:/Program Files/7-Zip/7z.exe") {
-  
+
   #Make a temporary directory to put unzipped files into
   tempDir = tempdir()
   print(tempDir)
   oldDir = getwd()
   setwd(tempDir)
-  
+
   #Write matrix attributes
   cat(2, file="_version")
   cat(FileName, file="_name")
   cat(FileName, file="_description")
-  
+
   cat(nrow(Matrix), file="_rows")
   cat(ncol(Matrix), file="_columns")
   cat(paste(rownames(Matrix),collapse=","), file="_external row numbers")
   cat(paste(colnames(Matrix),collapse=","), file="_external column numbers")
-  
+
   #Write rows
   for(i in 1:nrow(Matrix)) {
     writeBin(Matrix[i,], paste("row_", i, sep=""), size=4, endian="big")
   }
-  
+
   #Create file
   filesToInclude = normalizePath(dir(tempDir, full.names=T))
   filesToInclude = paste(paste('"', filesToInclude, '"\n', sep=""), collapse=" ")
