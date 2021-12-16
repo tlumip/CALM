@@ -109,15 +109,13 @@
       # PrT Daily: 2 auto demand; 3 t0 time; 4 tcur time; 5 distance
       # PrT Peak: 2 auto demand; 3 t0 time; 4 tcur time; 5 distance
       matNumsPrT <- if(iter == 1){ c(tt = 2, dist = 3) }else{ c(tt = 4, dist = 5) } # Off-peak + peak travel time, distances
-      matNumsPuT <- if(iter == 1){ c(ivt = 1, await = 3, bwait = 4, walk = 5, transfers = 8, dist = 9) }else{ c(ivt = 2, await = 4, bwait = 5, walk = 6, transfers = 9, dist = 10) } # In-Vehicle Time, origin wait, transfer wait, walk time, number of transfers, distance
-      prtDySkim <- "outputs/matrices/prt_daily_skim.omx"
-      prtPkSkim <- "outputs/matrices/prt_peak_skim.omx"
-      putDySkim <- "outputs/matrices/put_daily_skim.omx"
-      putPkSkim <- "outputs/matrices/put_peak_skim.omx"
+      matNumsPuT <- if(iter == 1){ c(ivt = 4, await = 6, bwait = 7, walk = 8, transfers = 11, dist = 12) }else{ c(ivt = 6, await = 8, bwait = 9, walk = 10, transfers = 13, dist = 14) } # In-Vehicle Time, origin wait, transfer wait, walk time, number of transfers, distance
+      dailySkim <- "outputs/matrices/daily_skim.omx"
+      peakSkim <- "outputs/matrices/peak_skim.omx"
       bikeskim <- "outputs/matrices/bike_skim.omx"
       walkskim <- "outputs/matrices/walk_skim.omx"
 
-      matZones <- readLookupOMX("outputs/matrices/prt_daily_skim.omx","NO")
+      matZones <- readLookupOMX("outputs/matrices/daily_skim.omx","NO")
 
       ##
 
@@ -183,7 +181,7 @@
       #Set diagonal of matrix to NA
       ##/
 
-      ivTimepeakbusWalk <- readSelectedOMX(putPkSkim, as.character(matNumsPuT["ivt"]))
+      ivTimepeakbusWalk <- readSelectedOMX(peakSkim, as.character(matNumsPuT["ivt"]))
       dimnames(ivTimepeakbusWalk) <- list(matZones$Lookup,matZones$Lookup)
       writeZipMat(ivTimepeakbusWalk,paste0("unimodel/emmemat/mf",ivTimepeakbusWalk_matNum,".zmx"),path7zipexe)
       diag(ivTimepeakbusWalk) <- NA
@@ -201,7 +199,7 @@
       #Set diagonal of matrix to NA
       ##/
 
-      walkTimepeakbusWalk <- readSelectedOMX(putPkSkim, as.character(matNumsPuT["walk"]))
+      walkTimepeakbusWalk <- readSelectedOMX(peakSkim, as.character(matNumsPuT["walk"]))
       dimnames(walkTimepeakbusWalk) <- list(matZones$Lookup,matZones$Lookup)
       writeZipMat(walkTimepeakbusWalk,paste0("unimodel/emmemat/mf",walkTimepeakbusWalk_matNum,".zmx"),path7zipexe)
       diag(walkTimepeakbusWalk) <- NA
@@ -223,8 +221,8 @@
       ##/
 
 
-      firstWait <- readSelectedOMX(putPkSkim, as.character(matNumsPuT["await"]))
-      secondWait <- readSelectedOMX(putPkSkim, as.character(matNumsPuT["bwait"]))
+      firstWait <- readSelectedOMX(peakSkim, as.character(matNumsPuT["await"]))
+      secondWait <- readSelectedOMX(peakSkim, as.character(matNumsPuT["bwait"]))
       dimnames(firstWait) <- list(matZones$Lookup,matZones$Lookup)
       dimnames(secondWait) <- list(matZones$Lookup,matZones$Lookup)
 
@@ -263,7 +261,7 @@
       #Replace >9999 and !tAvail with NA (OD pair not available)
       ##/
 
-      boardingspeakbusWalk <- readSelectedOMX(putPkSkim, as.character(matNumsPuT["transfers"])) # number of transfers
+      boardingspeakbusWalk <- readSelectedOMX(peakSkim, as.character(matNumsPuT["transfers"])) # number of transfers
       dimnames(boardingspeakbusWalk) <- list(matZones$Lookup,matZones$Lookup)
       writeZipMat(boardingspeakbusWalk,paste0("unimodel/emmemat/mf",boardingspeakbusWalk_matNum,".zmx"),path7zipexe)
       boardingspeakbusWalk[boardingspeakbusWalk > 9999] <- NA
@@ -282,7 +280,7 @@
       #Set diagonal of matrix to NA
       ##/
 
-      ivTimeoffPeakbusWalk  <- readSelectedOMX(putDySkim, as.character(matNumsPuT["ivt"]))
+      ivTimeoffPeakbusWalk  <- readSelectedOMX(dailySkim, as.character(matNumsPuT["ivt"]))
       dimnames(ivTimeoffPeakbusWalk) <- list(matZones$Lookup,matZones$Lookup)
       writeZipMat(ivTimeoffPeakbusWalk,paste0("unimodel/emmemat/mf",ivTimeoffPeakbusWalk_matNum,".zmx"),path7zipexe)
       diag(ivTimeoffPeakbusWalk) <- NA
@@ -300,7 +298,7 @@
       #Set diagonal of matrix to NA
       ##/
 
-      walkTimeoffPeakbusWalk <- readSelectedOMX(putDySkim, as.character(matNumsPuT["walk"]))
+      walkTimeoffPeakbusWalk <- readSelectedOMX(dailySkim, as.character(matNumsPuT["walk"]))
       dimnames(walkTimeoffPeakbusWalk) <- list(matZones$Lookup,matZones$Lookup)
       writeZipMat(walkTimeoffPeakbusWalk,paste0("unimodel/emmemat/mf",walkTimeoffPeakbusWalk_matNum,".zmx"),path7zipexe)
       diag(walkTimeoffPeakbusWalk) <- NA
@@ -321,8 +319,8 @@
       #Second wait is the difference: totalWait - FirstWait
       ##/
 
-      firstWait <- readSelectedOMX(putDySkim, as.character(matNumsPuT["await"]))
-      secondWait <- readSelectedOMX(putDySkim, as.character(matNumsPuT["bwait"]))
+      firstWait <- readSelectedOMX(dailySkim, as.character(matNumsPuT["await"]))
+      secondWait <- readSelectedOMX(dailySkim, as.character(matNumsPuT["bwait"]))
       dimnames(firstWait) <- list(matZones$Lookup,matZones$Lookup)
       dimnames(secondWait) <- list(matZones$Lookup,matZones$Lookup)
 
@@ -361,7 +359,7 @@
       #Replace >9999 and !tAvail with NA (OD pair not available)
       ##/
 
-      boardingsoffPeakbusWalk <- readSelectedOMX(putDySkim, as.character(matNumsPuT["transfers"]))
+      boardingsoffPeakbusWalk <- readSelectedOMX(dailySkim, as.character(matNumsPuT["transfers"]))
       dimnames(boardingsoffPeakbusWalk ) <- list(matZones$Lookup,matZones$Lookup)
       writeZipMat(boardingsoffPeakbusWalk,paste0("unimodel/emmemat/mf",boardingsoffPeakbusWalk_matNum,".zmx"),path7zipexe)
       boardingsoffPeakbusWalk[boardingsoffPeakbusWalk > 9999] <- NA
@@ -511,7 +509,7 @@
       #setwd(paste(basedir, "\\", bankFolder, sep=""))
 
 
-      autoDist <- readSelectedOMX(prtDySkim, as.character(matNumsPrT["dist"]))
+      autoDist <- readSelectedOMX(dailySkim, as.character(matNumsPrT["dist"]))
       dimnames(autoDist) <- list(matZones$Lookup,matZones$Lookup)
       writeZipMat(autoDist,paste0("unimodel/emmemat/mf",autoDistance_matNum,".zmx"),path7zipexe)
       #Set diagonal values
@@ -528,7 +526,7 @@
 
       #setwd(paste(basedir, "\\", bankFolder, sep=""))
 
-      tranDist <- readSelectedOMX(putDySkim, as.character(matNumsPuT["dist"]))
+      tranDist <- readSelectedOMX(dailySkim, as.character(matNumsPuT["dist"]))
       dimnames(tranDist) <- list(matZones$Lookup,matZones$Lookup)
       writeZipMat(tranDist,paste0("unimodel/emmemat/mf",tranDistance_matNum,".zmx"),path7zipexe)
       #Set diagonal values and Transit Availabilty
@@ -652,9 +650,9 @@
       ##/
 
       autoModes <- c("driveAlone", "drivePass", "pass")
-      autoTimeoffPeak <- readSelectedOMX(prtDySkim, as.character(matNumsPrT["tt"]))
+      autoTimeoffPeak <- readSelectedOMX(dailySkim, as.character(matNumsPrT["tt"]))
       dimnames(autoTimeoffPeak) <- list(matZones$Lookup,matZones$Lookup)
-      autoTimepeak <- readSelectedOMX(prtPkSkim, as.character(matNumsPrT["tt"]))
+      autoTimepeak <- readSelectedOMX(peakSkim, as.character(matNumsPrT["tt"]))
       dimnames(autoTimepeak) <- list(matZones$Lookup,matZones$Lookup)
       writeZipMat(autoTimeoffPeak,paste0("unimodel/emmemat/mf",autoTimeoffPeak_matNum,".zmx"),path7zipexe)
       writeZipMat(autoTimepeak,paste0("unimodel/emmemat/mf",autoTimepeak_matNum,".zmx"),path7zipexe)

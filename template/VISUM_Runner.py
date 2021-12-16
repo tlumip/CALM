@@ -41,6 +41,7 @@ for row in settings:
 ### Global settings
 inputVersionFile = settings_dict['visumInputFile']
 setConnectorTimes = True if settings_dict['setConnectorTimes'] == "TRUE" else False
+peakOffPeakTransit = True if settings_dict['runPeakOffPeakTransitAssignment'] == "TRUE" else False
 
 ### Define Functions
 def startVisum():
@@ -114,39 +115,29 @@ if __name__== "__main__":
       Visum = startVisum()
       loadVersion(Visum, inputVersionFile)
 
+      # Clear existing matrices
+      removeAllMatrices(Visum)
+
       # Set connector times
       if setConnectorTimes:
           loadProcedure(Visum, "visum/procedures/connector_times.xml")
 
-      # Auto Daily
-      loadProcedure(Visum, "visum/procedures/prt_daily_skim.xml")
-      writeMatrices(Visum, "outputs/matrices/prt_daily_skim.omx")
-      removeAllMatrices(Visum)
-
-      # Auto Peak
-      loadProcedure(Visum, "visum/procedures/prt_peak_skim.xml")
-      writeMatrices(Visum, "outputs/matrices/prt_peak_skim.omx")
-      removeAllMatrices(Visum)
-
-      # Transit Daily
-      loadProcedure(Visum, "visum/procedures/put_skim.xml")
-      writeMatrices(Visum, "outputs/matrices/put_daily_skim.omx")
-      removeAllMatrices(Visum)
-
-      # Transit Peak
-      loadProcedure(Visum, "visum/procedures/put_skim.xml")
-      writeMatrices(Visum, "outputs/matrices/put_peak_skim.omx")
-      removeAllMatrices(Visum)
+      periods = ['daily','peak']
+      for p in periods:
+          removeAllMatrices(Visum)
+          loadProcedure(Visum, "visum/procedures/prt_"+p+"_skim.xml")
+          loadProcedure(Visum, "visum/procedures/put_skim.xml")
+          writeMatrices(Visum, "outputs/matrices/"+p+"_skim.omx")
 
       # Walk
+      removeAllMatrices(Visum)
       loadProcedure(Visum, "visum/procedures/walk_skim.xml")
       writeMatrices(Visum, "outputs/matrices/walk_skim.omx")
-      removeAllMatrices(Visum)
 
       # Bike
+      removeAllMatrices(Visum)
       loadProcedure(Visum, "visum/procedures/bike_skim.xml")
       writeMatrices(Visum, "outputs/matrices/bike_skim.omx")
-      removeAllMatrices(Visum)
 
       closeVisum(Visum)
       sys.exit(0)
@@ -158,14 +149,21 @@ if __name__== "__main__":
 # combined auto + transit assignment
   if runmode == 'assignment':
     try:
-      matFile = ['daily','peak','peak'] # peak matrix always has PM vehicle, but may not have peak/off-peak bus
-      autoTimePeriod = ['daily','pm1','daily'] # assign daily  auto + off-peak transit if exists
-      transitTimePeriod = ['daily','pkad','opad']
-      versionName = ['daily','peak','offpeak']
+      periodName = ['daily','peak'] # peak matrix always has PM vehicle, but may not have peak/off-peak bus
+      autoTimePeriod = ['daily','pm1'] # assign daily  auto + off-peak transit if exists
+
+      #versionName = ['daily','peak','offpeak']
+      if peakOffPeakTransit:
+          transitTimePeriod = ['opad','pkad']
+      else:
+          transitTimePeriod = ['daily','dummy'] # 'dummy' is a placehold that does not exist, needed on 2nd iteration
 
       for i in range(len(autoTimePeriod)):
           Visum = startVisum()
           loadVersion(Visum, inputVersionFile)
+
+          # Clear existing matrices
+          removeAllMatrices(Visum)
 
           # Set connector times
           if setConnectorTimes:
@@ -177,9 +175,9 @@ if __name__== "__main__":
           bus = numpy.zeros((len(tazIds),len(tazIds)))
 
           # Read OMX
-          trips = omx.open_file("outputs/matrices/demand_"+matFile[i]+".omx",'r')
+          trips = omx.open_file("outputs/matrices/demand_"+periodName[i]+".omx",'r')
 
-          # Only fill bus matrix if there are trips; else zeros
+          # Only fill demand matrix if there are trips; else keep zeros
           if autoTimePeriod[i]+'vehicle' in trips:
               auto = trips[autoTimePeriod[i]+"vehicle"]
 
@@ -199,15 +197,10 @@ if __name__== "__main__":
           autoHandle.SetAttValue("NAME","Auto Demand")
           VisumPy.helpers.SetMatrix(Visum, autoMatNum, auto)
 
-          # Only run assignment when there are trips; always save skims
+          # Only run assignment when there are trips
           if autoTimePeriod[i]+'vehicle' in trips:
-            loadProcedure(Visum, "visum/procedures/set_"+matFile[i]+"_capprt.xml")
+            loadProcedure(Visum, "visum/procedures/set_"+periodName[i]+"_capprt.xml")
             loadProcedure(Visum, "visum/procedures/prt_assignment.xml")
-
-          loadProcedure(Visum, "visum/procedures/prt_"+matFile[i]+"_skim.xml")
-          writeMatrices(Visum, "outputs/matrices/prt_"+versionName[i]+"_skim.omx")
-
-          removeAllMatrices(Visum)
 
           matNums = VisumPy.helpers.GetMulti(Visum.Net.Matrices, "No")
           if putMatNum not in matNums:
@@ -221,12 +214,12 @@ if __name__== "__main__":
           if transitTimePeriod[i]+'bus' in trips:
             loadProcedure(Visum, "visum/procedures/put_assignment.xml")
 
+          # Write skims
+          loadProcedure(Visum, "visum/procedures/prt_"+periodName[i]+"_skim.xml")
           loadProcedure(Visum, "visum/procedures/put_skim.xml")
-          writeMatrices(Visum, "outputs/matrices/put_"+versionName[i]+"_skim.omx")
+          writeMatrices(Visum, "outputs/matrices/"+periodName[i]+"_skim.omx")
 
-          saveVersion(Visum, "outputs/networks/Assignment_"+versionName[i]+".ver")
-
-          removeAllMatrices(Visum)
+          saveVersion(Visum, "outputs/networks/Assignment_"+periodName[i]+".ver")
 
           #close files
           trips.close()

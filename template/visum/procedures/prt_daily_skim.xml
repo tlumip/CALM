@@ -1055,7 +1055,7 @@
           VDFUNCTIONTYPE = "BPR"
           BLOCKED = "0"
           HARDBLOCKING = "0"
-          CAPACITYFACTOR = "10"
+          CAPACITYFACTOR = "1"
           BPR_A = "0.05"
           BPR_B = "10"
           BPR_BISREAL = "0"
@@ -1122,7 +1122,7 @@
           VDFUNCTIONTYPE = "BPR"
           BLOCKED = "0"
           HARDBLOCKING = "0"
-          CAPACITYFACTOR = "10"
+          CAPACITYFACTOR = "1"
           BPR_A = "0.83"
           BPR_B = "5.5"
           BPR_BISREAL = "1"
@@ -2193,7 +2193,7 @@
         INCLUDESUBCATEGORIES = "0"
         RESULTATTRNAME = "CAPPRT"
         ONLYACTIVE = "0"
-        FORMULA = "[EMME_DATA2]*[NUMLANES]"
+        FORMULA = "IF([CAPPERLANE] != 9999,[CAPPERLANE]*[NUMLANES]*16,9999)"
       />      
     </OPERATION>
     <OPERATION
