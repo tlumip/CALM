@@ -32,6 +32,7 @@ settings_csv = csv.reader(open('inputs/Settings.csv'))
 settings = list(settings_csv)
 
 settings_dict = {}
+omx_lookup = {}
 
 for row in settings:
     key = row[1]
@@ -88,8 +89,8 @@ def writeMatrices(Visum, fileName):
   omxFile = omx.open_file(fileName,'w')
   for i in range(len(matrixIds)):
       mat = VisumPy.helpers.GetMatrix(Visum, matrixIds[i][1])
-      omxFile[str(int(matrixIds[i][1]))] = mat
-      omxFile[str(int(matrixIds[i][1]))].attrs.Description = matrixNames[i][1]
+      omxFile[matrixNames[i][1]] = mat
+      omxFile[matrixNames[i][1]].attrs.Description = matrixNames[i][1]
   omxFile.close()
 
   #write lookup

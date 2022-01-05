@@ -83,7 +83,23 @@ NO,setting,value,Units,RCodeUse,group,Notes
 94,autoDistance_matNum,21,integer,inputsSave.R,emme,NA
 95,walkDistance_matNum,22,integer,"createTripDist.R, inputsSave.R",emme,NA
 96,bikeDistance_matNum,23,integer,"createTripDist.R, inputsSave.R",emme,NA
-97,tranDistance_matNum,24,integer,inputsSave.R,,
-98,visumInputFile,"visum/CALM.ver",string,VISUM_Runner.py,Visum,relative path to input version file
-99,path7zipexe,"C:/Program Files/7-Zip/7z.exe",string,ZMX.r,university.r,path to 7-zip executable
-100,setConnectorTimes,TRUE,Boolean,VISUM_Runner.py,Visum,Enable/disable connector times procedure
+97,tranDistance_matNum,24,integer,inputsSave.R,emme,NA
+98,autoTimeoffPeak_omxName,"tCur a",string,"runModel.R, inputsSave.R",Visum,NA
+99,autoTimepeak_omxName,"tCur a",string,"runModel.R, inputsSave.R",Visum,NA
+100,boardingsoffPeakbusWalk_omxName,"Number of transfers PuT",string,"runModel.R, inputsSave.R",Visum,NA
+101,boardingspeakbusWalk_omxName,"Number of transfers PuT",string,"runModel.R, inputsSave.R",Visum,NA
+102,ivTimeoffPeakbusWalk_omxName,"In-vehicle time PuT",string,"runModel.R, inputsSave.R",Visum,NA
+103,ivTimepeakbusWalk_omxName,"In-vehicle time PuT",string,"runModel.R, inputsSave.R",Visum,NA
+104,waitTimeAoffPeakbusWalk_omxName,"Origin wait time PuT",string,"runModel.R, inputsSave.R",Visum,NA
+105,waitTimeApeakbusWalk_omxName,"Origin wait time PuT",string,"runModel.R, inputsSave.R",Visum,NA
+106,waitTimeBoffPeakbusWalk_omxName,"Transfer wait time PuT",string,"runModel.R, inputsSave.R",Visum,NA
+107,waitTimeBpeakbusWalk_omxName,"Transfer wait time PuT",string,"runModel.R, inputsSave.R",Visum,NA
+108,walkTimeoffPeakbusWalk_omxName,"Walk time PuT",string,"runModel.R, inputsSave.R",Visum,NA
+109,walkTimepeakbusWalk_omxName,"Walk time PuT",string,"runModel.R, inputsSave.R",Visum,NA
+110,autoDistance_omxName,"Trip distance a",string,inputsSave.R,Visum,NA
+111,walkDistance_omxName,"Trip distance Walk",string,"createTripDist.R, inputsSave.R",Visum,NA
+112,bikeDistance_omxName,"Trip distance Bike",string,"createTripDist.R, inputsSave.R",Visum,NA
+113,tranDistance_omxName,"Journey distance PuT",string,inputsSave.R,Visum,NA
+114,visumInputFile,"visum/CALM.ver",string,VISUM_Runner.py,Visum,relative path to input version file
+115,path7zipexe,"C:/Program Files/7-Zip/7z.exe",string,ZMX.r,university.r,path to 7-zip executable
+116,setConnectorTimes,TRUE,Boolean,VISUM_Runner.py,Visum,Enable/disable connector times procedure
