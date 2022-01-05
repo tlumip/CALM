@@ -104,12 +104,6 @@
 
       cat("Read in, preprocess, and save inputs\n\n")
 
-      # PUT Daily: 1 Transit Demand; 2 IVT; 3 Aux Time; 4 await; 5 bwait; 6 walk; 9 transfers; 10 journey dist
-      # PUT Peak: 1 IVT; 2 Aux; 3 await; 4 bwait; 5 walk; 6 access time; 7 egress time; 8 transfers; 9 journey dist
-      # PrT Daily: 2 auto demand; 3 t0 time; 4 tcur time; 5 distance
-      # PrT Peak: 2 auto demand; 3 t0 time; 4 tcur time; 5 distance
-      #matNumsPrT <- if(iter == 1){ c(tt = 2, dist = 3) }else{ c(tt = 4, dist = 5) } # Off-peak + peak travel time, distances
-      #matNumsPuT <- if(iter == 1){ c(ivt = 4, await = 6, bwait = 7, walk = 8, transfers = 11, dist = 12) }else{ c(ivt = 6, await = 8, bwait = 9, walk = 10, transfers = 13, dist = 14) } # In-Vehicle Time, origin wait, transfer wait, walk time, number of transfers, distance
       dailySkim <- "outputs/matrices/daily_skim.omx"
       peakSkim <- "outputs/matrices/peak_skim.omx"
       bikeskim <- "outputs/matrices/bike_skim.omx"

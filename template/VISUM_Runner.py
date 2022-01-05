@@ -32,7 +32,6 @@ settings_csv = csv.reader(open('inputs/Settings.csv'))
 settings = list(settings_csv)
 
 settings_dict = {}
-omx_lookup = {}
 
 for row in settings:
     key = row[1]
