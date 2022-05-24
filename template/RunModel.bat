@@ -78,9 +78,10 @@ IF %ERRORLEVEL% NEQ 0 GOTO MODEL_ERROR
 rem # check convergence
 IF %ITERATION% LSS %MAX_ITER% (
   %R_SCRIPT% modelRunner.R convergence %ITERATION%
-  IF %ERRORLEVEL% EQU 10 GOTO REPORTING rem # converged
-  IF %ERRORLEVEL% NEQ 0 GOTO MODEL_ERROR rem # error
 )
+
+IF %ERRORLEVEL% EQU 10 GOTO REPORTING rem # converged
+IF %ERRORLEVEL% NEQ 0 GOTO MODEL_ERROR rem # error
 
 :: -------------------------------------------------------------------------------------------------
 :: Loop again if needed
